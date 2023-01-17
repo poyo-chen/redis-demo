@@ -10,7 +10,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 
 @RequiredArgsConstructor
 @PersistenceAdapter
-public class UserCodePersistenceAdapter implements SaveUserCodePort, GetUserCodePort {
+class UserCodePersistenceAdapter implements SaveUserCodePort, GetUserCodePort {
 
   public static final int USER_CODE_TTL = 2;
   private final StringRedisTemplate stringRedisTemplate;

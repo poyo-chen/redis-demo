@@ -8,3 +8,5 @@ spring:
         max-idle: 8  #最大空閒連接數
         min-idle: 0 #最小空閒連接數
         max-wait: 100 #連接等待時間
+  profiles:
+      active: local

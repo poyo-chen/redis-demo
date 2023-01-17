@@ -1,12 +1,28 @@
 package org.martinez.redis.sms.adapter.out.persistence;
 
+import lombok.RequiredArgsConstructor;
+import org.martinez.redis.common.annotation.PersistenceAdapter;
 import org.martinez.redis.sms.application.port.out.GetUserPort;
+import org.martinez.redis.sms.application.port.out.SaveUserPort;
 import org.martinez.redis.sms.domain.User;
+import org.martinez.redis.sms.domain.User.UserId;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
-public class UserPersistenceAdapter implements GetUserPort {
+@RequiredArgsConstructor
+@PersistenceAdapter
+class UserPersistenceAdapter implements GetUserPort, SaveUserPort {
+
+  private final UserRepository userRepository;
+  private final StringRedisTemplate stringRedisTemplate;
 
   @Override
   public User getUser(String phone) {
-    return null;
+    UserJpaEntity userJpaEntity = userRepository.findByPhone(phone);
+    return User.withId(new UserId(userJpaEntity.getId()), userJpaEntity.getPhone());
+  }
+
+  @Override
+  public void saveUser(User user) {
+
   }
 }

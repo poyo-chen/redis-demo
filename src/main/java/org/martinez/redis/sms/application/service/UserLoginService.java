@@ -35,9 +35,9 @@ public class UserLoginService implements UserLoginUseCase {
     }
     //4.檢查一致則根據手機查詢用戶資訊
     User user = getUserPort.getUser(loginCommand.getPhone());
-    if(user==null){
+    if (user == null) {
       //5 不存在，創建新用戶 TODO
-      user=createUserWithPhone(loginCommand.getPhone());
+      user = createUserWithPhone(loginCommand.getPhone());
     }
     //6 隨機生成 Token
     String token = UUID.randomUUID().toString();
@@ -47,7 +47,7 @@ public class UserLoginService implements UserLoginUseCase {
   }
 
   private User createUserWithPhone(String phone) {
-    return User.withPhone(phone);
+    return User.withoutId(phone);
   }
 
   private boolean checkPhoneNumber(String phone) {
