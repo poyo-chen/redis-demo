@@ -5,4 +5,6 @@ import org.martinez.redis.sms.domain.User;
 public interface SaveUserPort {
 
   void saveUser(User user);
+
+  void saveUserToken(String token, User user);
 }

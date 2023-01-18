@@ -7,11 +7,13 @@ import org.martinez.redis.sms.application.port.in.LoginCommand;
 import org.martinez.redis.sms.application.port.in.UserLoginUseCase;
 import org.martinez.redis.sms.application.port.in.UserSendCodeUseCase;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@RestController("/user")
+@RestController
+@RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -23,10 +25,11 @@ public class UserController {
    * 發送手機驗證碼.
    *
    * @param phone 手機號碼
+   * @return
    */
-  @PostMapping("code")
-  public void sendCode(@RequestParam("phone") String phone) {
-    userSendCodeUsecase.sendCode(phone);
+  @PostMapping("/code")
+  public Result sendCode(@RequestParam("phone") String phone) {
+    return userSendCodeUsecase.sendCode(phone);
   }
 
   /**
@@ -35,7 +38,7 @@ public class UserController {
    * @param phone 手機號碼
    * @return
    */
-  @PostMapping("login")
+  @PostMapping("/login")
   public Result login(@RequestParam("phone") String phone, @RequestParam("code") String code) {
     LoginCommand loginCommand = new LoginCommand(phone, code);
     return userLoginUseCase.login(loginCommand);

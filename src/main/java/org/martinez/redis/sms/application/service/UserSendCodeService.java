@@ -23,16 +23,16 @@ public class UserSendCodeService implements UserSendCodeUseCase {
       return Result.fail("手機格式錯誤");
     }
     //3.檢查通過,產生驗證碼 TODO
-    String code = String.valueOf(Math.random());
+    String code = String.valueOf(123456);
     //4.將驗證碼存入 redis
     saveUserCodePort.saveUserCode(LOGIN_CODE + phone, code);
     //5.發送驗證碼 TODO
-    log.debug("Code send success! code: {}", code);
+    log.info("Code send success! code: {}", code);
     //6.返回成功
     return Result.ok();
   }
 
   private boolean checkPhoneNumber(String phone) {
-    return phone.length() == 10;
+    return phone.length() != 10;
   }
 }

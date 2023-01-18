@@ -2,12 +2,15 @@ package org.martinez.redis.sms.domain;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.Value;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class User {
 
+  @Getter
   private final UserId id;
+  @Getter
   private final String phone;
 
   public static User withoutId(String phone) {
@@ -21,6 +24,6 @@ public class User {
   @Value
   public static class UserId {
 
-    private Long value;
+    private final Long value;
   }
 }

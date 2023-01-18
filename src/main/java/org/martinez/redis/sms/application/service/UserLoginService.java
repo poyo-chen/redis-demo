@@ -15,6 +15,7 @@ import org.martinez.redis.sms.domain.User;
 @UseCase
 public class UserLoginService implements UserLoginUseCase {
 
+  public static final String LOGIN_TOKEN = "login:token";
   private final GetUserCodePort getUserCodePort;
   private final GetUserPort getUserPort;
   private final SaveUserPort saveUserPort;
@@ -41,16 +42,17 @@ public class UserLoginService implements UserLoginUseCase {
     }
     //6 隨機生成 Token
     String token = UUID.randomUUID().toString();
-
+    saveUserPort.saveUserToken(LOGIN_TOKEN + token, user);
 
     return Result.ok(token);
   }
 
   private User createUserWithPhone(String phone) {
-    return User.withoutId(phone);
+    saveUserPort.saveUser(User.withoutId(phone));
+    return getUserPort.getUser(phone);
   }
 
   private boolean checkPhoneNumber(String phone) {
-    return phone.length() == 10;
+    return phone.length() != 10;
   }
 }
