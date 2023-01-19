@@ -6,6 +6,7 @@ import org.martinez.redis.common.Result;
 import org.martinez.redis.sms.application.port.in.LoginCommand;
 import org.martinez.redis.sms.application.port.in.UserLoginUseCase;
 import org.martinez.redis.sms.application.port.in.UserSendCodeUseCase;
+import org.martinez.redis.sms.domain.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,7 +53,8 @@ public class UserController {
 
   @GetMapping("me")
   public Result me() {
-    return Result.ok();
+    User user = User.getUser();
+    return Result.ok(user);
   }
 
 
