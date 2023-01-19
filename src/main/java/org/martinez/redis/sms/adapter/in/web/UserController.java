@@ -6,6 +6,7 @@ import org.martinez.redis.common.Result;
 import org.martinez.redis.sms.application.port.in.LoginCommand;
 import org.martinez.redis.sms.application.port.in.UserLoginUseCase;
 import org.martinez.redis.sms.application.port.in.UserSendCodeUseCase;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,4 +44,16 @@ public class UserController {
     LoginCommand loginCommand = new LoginCommand(phone, code);
     return userLoginUseCase.login(loginCommand);
   }
+
+  @PostMapping("logout")
+  public Result logout() {
+    return Result.fail();
+  }
+
+  @GetMapping("me")
+  public Result me() {
+    return Result.ok();
+  }
+
+
 }

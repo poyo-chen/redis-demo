@@ -2,6 +2,7 @@ package org.martinez.redis.sms.application.service;
 
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.martinez.redis.common.Result;
 import org.martinez.redis.common.annotation.UseCase;
 import org.martinez.redis.sms.application.port.in.LoginCommand;
@@ -13,6 +14,7 @@ import org.martinez.redis.sms.domain.User;
 
 @RequiredArgsConstructor
 @UseCase
+@Slf4j
 public class UserLoginService implements UserLoginUseCase {
 
   public static final String LOGIN_TOKEN = "login:token";
@@ -49,6 +51,7 @@ public class UserLoginService implements UserLoginUseCase {
 
   private User createUserWithPhone(String phone) {
     saveUserPort.saveUser(User.withoutId(phone));
+    log.info("create new user: {}", phone);
     return getUserPort.getUser(phone);
   }
 
