@@ -1,11 +1,11 @@
-package org.martinez.redis.sms.adapter.out.persistence;
+package org.martinez.redis.user.adapter.out.persistence;
 
 
 import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import org.martinez.redis.common.annotation.PersistenceAdapter;
-import org.martinez.redis.sms.application.port.out.GetUserCodePort;
-import org.martinez.redis.sms.application.port.out.SaveUserCodePort;
+import org.martinez.redis.user.application.port.out.GetUserCodePort;
+import org.martinez.redis.user.application.port.out.SaveUserCodePort;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 @RequiredArgsConstructor

@@ -1,6 +1,6 @@
-package org.martinez.redis.sms.application.port.out;
+package org.martinez.redis.user.application.port.out;
 
-import org.martinez.redis.sms.domain.User;
+import org.martinez.redis.user.domain.User;
 
 public interface SaveUserPort {
 

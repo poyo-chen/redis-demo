@@ -1,12 +1,12 @@
-package org.martinez.redis.sms.adapter.in.web;
+package org.martinez.redis.user.adapter.in.web;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.martinez.redis.common.Result;
-import org.martinez.redis.sms.application.port.in.LoginCommand;
-import org.martinez.redis.sms.application.port.in.UserLoginUseCase;
-import org.martinez.redis.sms.application.port.in.UserSendCodeUseCase;
-import org.martinez.redis.sms.domain.User;
+import org.martinez.redis.user.application.port.in.LoginCommand;
+import org.martinez.redis.user.application.port.in.UserLoginUseCase;
+import org.martinez.redis.user.application.port.in.UserSendCodeUseCase;
+import org.martinez.redis.user.domain.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +27,7 @@ public class UserController {
    * 發送手機驗證碼.
    *
    * @param phone 手機號碼
-   * @return
+   * @return 無
    */
   @PostMapping("/code")
   public Result sendCode(@RequestParam("phone") String phone) {
@@ -38,7 +38,7 @@ public class UserController {
    * 登入.
    *
    * @param phone 手機號碼
-   * @return
+   * @return Token
    */
   @PostMapping("/login")
   public Result login(@RequestParam("phone") String phone, @RequestParam("code") String code) {
@@ -46,11 +46,22 @@ public class UserController {
     return userLoginUseCase.login(loginCommand);
   }
 
+  /**
+   * 登出.
+   *
+   * @return 無
+   */
   @PostMapping("logout")
   public Result logout() {
-    return Result.fail();
+    User.removeUser();
+    return Result.ok("登出成功");
   }
 
+  /**
+   * 顯示自己資訊.
+   *
+   * @return 用戶資訊
+   */
   @GetMapping("me")
   public Result me() {
     User user = User.getUser();

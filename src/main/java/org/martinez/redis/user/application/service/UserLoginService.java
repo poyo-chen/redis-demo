@@ -1,16 +1,16 @@
-package org.martinez.redis.sms.application.service;
+package org.martinez.redis.user.application.service;
 
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.martinez.redis.common.Result;
 import org.martinez.redis.common.annotation.UseCase;
-import org.martinez.redis.sms.application.port.in.LoginCommand;
-import org.martinez.redis.sms.application.port.in.UserLoginUseCase;
-import org.martinez.redis.sms.application.port.out.GetUserCodePort;
-import org.martinez.redis.sms.application.port.out.GetUserPort;
-import org.martinez.redis.sms.application.port.out.SaveUserPort;
-import org.martinez.redis.sms.domain.User;
+import org.martinez.redis.user.application.port.in.LoginCommand;
+import org.martinez.redis.user.application.port.in.UserLoginUseCase;
+import org.martinez.redis.user.application.port.out.GetUserCodePort;
+import org.martinez.redis.user.application.port.out.GetUserPort;
+import org.martinez.redis.user.application.port.out.SaveUserPort;
+import org.martinez.redis.user.domain.User;
 
 @RequiredArgsConstructor
 @UseCase

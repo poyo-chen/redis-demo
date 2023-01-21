@@ -1,4 +1,4 @@
-package org.martinez.redis.sms.domain;
+package org.martinez.redis.user.domain;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -26,7 +26,7 @@ public class User {
   @Value
   public static class UserId {
 
-    private final Long value;
+    Long value;
   }
 
   public static void saveUser(User user) {

@@ -1,11 +1,11 @@
-package org.martinez.redis.sms.application.service;
+package org.martinez.redis.user.application.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.martinez.redis.common.Result;
 import org.martinez.redis.common.annotation.UseCase;
-import org.martinez.redis.sms.application.port.in.UserSendCodeUseCase;
-import org.martinez.redis.sms.application.port.out.SaveUserCodePort;
+import org.martinez.redis.user.application.port.in.UserSendCodeUseCase;
+import org.martinez.redis.user.application.port.out.SaveUserCodePort;
 
 @Slf4j
 @RequiredArgsConstructor

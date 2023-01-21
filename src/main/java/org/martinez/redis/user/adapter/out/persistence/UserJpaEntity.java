@@ -1,4 +1,4 @@
-package org.martinez.redis.sms.adapter.out.persistence;
+package org.martinez.redis.user.adapter.out.persistence;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

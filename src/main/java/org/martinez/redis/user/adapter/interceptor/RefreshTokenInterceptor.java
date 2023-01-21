@@ -1,4 +1,4 @@
-package org.martinez.redis.sms.adapter.interceptor;
+package org.martinez.redis.user.adapter.interceptor;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.martinez.redis.sms.domain.User;
-import org.martinez.redis.sms.domain.User.UserId;
+import org.martinez.redis.user.domain.User;
+import org.martinez.redis.user.domain.User.UserId;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -19,8 +19,8 @@ public class RefreshTokenInterceptor implements
   private final StringRedisTemplate stringRedisTemplate;
 
   @Override
-  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-      throws Exception {
+  public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
+      Object handler) {
 
     // 取得前端token
     String token = request.getHeader("authorization");
@@ -41,8 +41,6 @@ public class RefreshTokenInterceptor implements
         (String) userMap.get("phone"));
     User.saveUser(user);
     //刷新有效期限
-    stringRedisTemplate.expire(key, 30, TimeUnit.MINUTES);
-
-    return true;
+    return Boolean.TRUE.equals(stringRedisTemplate.expire(key, 30, TimeUnit.MINUTES));
   }
 }

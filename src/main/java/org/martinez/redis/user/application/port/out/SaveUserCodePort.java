@@ -1,4 +1,4 @@
-package org.martinez.redis.sms.application.port.out;
+package org.martinez.redis.user.application.port.out;
 
 public interface SaveUserCodePort {
 

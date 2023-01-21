@@ -1,8 +1,8 @@
 package org.martinez.redis.config;
 
 import lombok.RequiredArgsConstructor;
-import org.martinez.redis.sms.adapter.interceptor.LoginInterceptor;
-import org.martinez.redis.sms.adapter.interceptor.RefreshTokenInterceptor;
+import org.martinez.redis.user.adapter.interceptor.LoginInterceptor;
+import org.martinez.redis.user.adapter.interceptor.RefreshTokenInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -21,7 +21,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
     registry.addInterceptor(new LoginInterceptor())
         .excludePathPatterns(
             "/user/login",
-            "/user/code"
+            "/user/code",
+            "/shop/**"
         ).order(1);
   }
 
